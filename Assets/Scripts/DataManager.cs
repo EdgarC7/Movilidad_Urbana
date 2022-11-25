@@ -7,11 +7,16 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private Carro[] _carros;
     private GameObject[] _carrosGO;
+    [SerializeField] private Semaforo[] _semaforos;
+    [SerializeField] private Step[] _steps;
+    [SerializeField] private int carCounter;
+    [SerializeField] private int semaforoCounter;
 
     // Start is called before the first frame update
     void Start()
     {
         _carrosGO = new GameObject[_carros.Length];
+        carCounter = 0;
 
         for(int i = 0; i < _carros.Length; i++)
         {
@@ -26,15 +31,13 @@ public class DataManager : MonoBehaviour
         for(int i = 0; i < _carros.Length; i++)
         {
             _carrosGO[i].transform.position = new Vector3(
-                    _carros[i].x,
-                    0,
-                    _carros[i].z
+                    _carros[i].x,  0, _carros[i].z
                 );
         }
     }
 
     // Update is called once per frame
-    void Update()
+  /*  void Update()
     {
         if(Input.GetKeyDown(KeyCode.R)){
 
@@ -46,32 +49,37 @@ public class DataManager : MonoBehaviour
 
             PosicionarCarros();
         }
-    }
+    }*/
+
+  IEnumerator Posiciones(GeneralInfo datos)
+  {
+      for (int i = 0; i < datos.Steps.Length; i++)
+      {
+          _carros = datos.Steps[i].carros;
+          PosicionarCarros();
+          yield return new WaitForSeconds(0.01f);
+      }
+  }
 
     public void EscucharRequestSinArgumentos() {
 
         print("HUBO UN REQUEST MUY INTERESANTE!");
     }
 
-    public void EscucharRequestConArgumentos(ListaCarros datos){
+   public void EscucharRequestConArgumentos(GeneralInfo datos)
+    {
         print("DATOS: " + datos);
 
-        // actualizar arreglo _carros de esta clase con 
-        // los carros que recibo de "datos"
 
+        _carros = datos.cars;
+        _semaforos = datos.semaphores;
+        _steps = datos.Steps;
         // invocar PosicionarCarros()
-
-        StartCoroutine(ConsumirSteps(datos));
+        Start();
+        StartCoroutine(Posiciones(datos));
+        // CambiarPosicion(datos);
+        // PosicionarSemaforos();
     }
 
-
-    private IEnumerator ConsumirSteps(ListaCarros datos) {
-
-        for(int i = 0; i < datos.steps.Length; i++){
-
-            _carros = datos.steps[i].carros;
-            PosicionarCarros();
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
+   
 }
