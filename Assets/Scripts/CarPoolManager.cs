@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CarPoolManager : MonoBehaviour
 {
+
     // LO PRIMERO
     // lo vamos a hacer un pseudo singleton 
     // voy a usar una propiedad
@@ -15,6 +16,7 @@ public class CarPoolManager : MonoBehaviour
     }
 
     // la variable puede estar definida
+    
     private float _dummy;
     public float Dummy{
         get{
@@ -62,36 +64,6 @@ public class CarPoolManager : MonoBehaviour
             nuevoObjeto.SetActive(false);
         }
     }
-
-    // Start is called before the first frame update
-    // corre para todos después de terminar TODOS los awakes
-    void Start()
-    {
-        
-
-    }
-
-    // Update is called once per frame
-    // frame?
-    // corre en intervalos irregulares 
-    void Update()
-    {
-        //print("UPDATE");
-    }
-
-    // corre también 1 vez por frame
-    // se ejecuta al terminar TODOS los updates 
-    // de TODOS los componentes de TODOS los objetos
-    void LateUpdate(){
-        //print("LATE UPDATE");
-    }
-
-    // corre en intervalos regulares especificados por engine
-    // tiene que ser menos frames que update
-    void FixedUpdate(){
-        //print("FIXED UPDATE");
-    }
-
     public GameObject ActivarObjeto(Vector3 posicion){
 
         print(posicion);

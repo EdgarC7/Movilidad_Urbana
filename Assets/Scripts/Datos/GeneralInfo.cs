@@ -7,5 +7,5 @@ public class GeneralInfo
     public Size[] size;
     public Carro[] cars;
     public Semaforo[] semaphores;
-    public Step[] Steps;
+    public Step[] frames;
 }

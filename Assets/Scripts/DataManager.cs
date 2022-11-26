@@ -1,85 +1,101 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
     [SerializeField]
+    float delayTime = 1.0f;
+    [SerializeField]
     private Carro[] _carros;
-    private GameObject[] _carrosGO;
-    [SerializeField] private Semaforo[] _semaforos;
-    [SerializeField] private Step[] _steps;
-    [SerializeField] private int carCounter;
-    [SerializeField] private int semaforoCounter;
+    WaitForSeconds delay = new WaitForSeconds(0.5f);
+    [SerializeField]
+    private Semaforo[] _semaforos;
+
+    public GameObject[] _carrosGO;
+    private GameObject[] _semaforosGO;
+    private Step[] _frames;
+    private int carCounter;
+    private int semaforoCounter;
 
     // Start is called before the first frame update
-    void Start()
+    private void Inicio()
     {
-        _carrosGO = new GameObject[_carros.Length];
+        _carrosGO = new GameObject[ _carros.Length];
+        // _semaforosGO = new GameObject[_semaforos.Length];
         carCounter = 0;
-
-        for(int i = 0; i < _carros.Length; i++)
+        
+        for (int i = 0; i < _carros.Length; i++)
         {
             _carrosGO[i] = CarPoolManager.Instance.ActivarObjeto(Vector3.zero);
+
         }
 
-        PosicionarCarros();
+        
     }
 
-    private void PosicionarCarros() 
+    private void PosicionarCarros()
     {
-        for(int i = 0; i < _carros.Length; i++)
+      
+        print(_carrosGO.Length + "carritos");
+        for (int i = 0; i < _carros.Length; i++)
         {
+           
             _carrosGO[i].transform.position = new Vector3(
-                    _carros[i].x,  0, _carros[i].z
-                );
+                _carros[i].x, 1, _carros[i].z);
         }
     }
 
-    // Update is called once per frame
-  /*  void Update()
+    // private void PosicionarSemaforos()
+    // {
+    //
+    //     for (int i = 0; i < _frames.Length; i++)
+    //     {
+    //         _semaforosGO[semaforoCounter].transform.position = new Vector3(
+    //             _frames[i].semaphores[semaforoCounter].x,
+    //             1,
+    //             _frames[i].semaphores[semaforoCounter].y
+    //
+    //         );
+    //         if (semaforoCounter >= _frames[i].semaphores.Length - 1)
+    //         {
+    //             semaforoCounter = 0;
+    //         }
+    //         else
+    //         {
+    //             semaforoCounter++;
+    //         }
+    //
+    //     }
+    // }
+
+    IEnumerator CambiarPosicion(GeneralInfo datos)
     {
-        if(Input.GetKeyDown(KeyCode.R)){
-
-            // simulando un update en datos
-            for(int i = 0; i < _carros.Length; i++){
-                _carros[i].x = Random.Range(0f, 10f);
-                _carros[i].z = Random.Range(0f, 10f);
-            }
-
+        for (int i = 0; i < datos.frames.Length; i++)
+        {
+            _carros = datos.frames[i].cars;
             PosicionarCarros();
+            yield return new WaitForSeconds(0.01f);
         }
-    }*/
+    }
 
-  IEnumerator Posiciones(GeneralInfo datos)
-  {
-      for (int i = 0; i < datos.Steps.Length; i++)
-      {
-          _carros = datos.Steps[i].carros;
-          PosicionarCarros();
-          yield return new WaitForSeconds(0.01f);
-      }
-  }
 
-    public void EscucharRequestSinArgumentos() {
-
+    public void EscucharRequestSinArgumentos()
+    {
         print("HUBO UN REQUEST MUY INTERESANTE!");
     }
 
-   public void EscucharRequestConArgumentos(GeneralInfo datos)
+    public void EscucharRequestConArgumentos(GeneralInfo datos)
     {
         print("DATOS: " + datos);
 
 
         _carros = datos.cars;
         _semaforos = datos.semaphores;
-        _steps = datos.Steps;
+        _frames = datos.frames;
         // invocar PosicionarCarros()
-        Start();
-        StartCoroutine(Posiciones(datos));
+        Inicio();
+        StartCoroutine(CambiarPosicion(datos));
         // CambiarPosicion(datos);
         // PosicionarSemaforos();
     }
-
-   
 }
