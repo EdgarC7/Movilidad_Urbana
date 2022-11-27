@@ -42,6 +42,17 @@ public class DataManager : MonoBehaviour
            
             _carrosGO[i].transform.position = new Vector3(
                 _carros[i].x, 1, _carros[i].z);
+            
+            /*
+            if (_carros[i].dir == 180) {
+                if (_carrosGO[i].transform.rotation.y>=179) {
+                    continue;
+                }
+                else {
+                    _carrosGO[i].transform.Rotate(0,180f,0, Space.Self);
+                } 
+            }
+            */
         }
     }
 
@@ -70,6 +81,12 @@ public class DataManager : MonoBehaviour
 
     IEnumerator CambiarPosicion(GeneralInfo datos)
     {
+        for (int i = 0; i < _carros.Length; i++) {
+            if (_carros[i].dir == 180) {
+                _carrosGO[i].transform.Rotate(0,180f,0, Space.Self);
+            }
+        }
+        
         for (int i = 0; i < datos.frames.Length; i++)
         {
             _carros = datos.frames[i].cars;

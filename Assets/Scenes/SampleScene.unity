@@ -1528,63 +1528,83 @@ MonoBehaviour:
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   - id: 0
     x: 0
     z: 0
+    dir: 0
   _semaforos:
   - id: 0
     color: 0
