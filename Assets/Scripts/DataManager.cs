@@ -82,6 +82,7 @@ public class DataManager : MonoBehaviour
     IEnumerator CambiarPosicion(GeneralInfo datos)
     {
         for (int i = 0; i < _carros.Length; i++) {
+            //_carrosGO[i].transform.position.y = 0.6;
             if (_carros[i].dir == 180) {
                 _carrosGO[i].transform.Rotate(0,180f,0, Space.Self);
             }
