@@ -19,7 +19,7 @@ public class RequestManager : MonoBehaviour
     [SerializeField]
     private float _esperaEntreRequests = 1;
 
-    public TextAsset _archivoJson;
+     [SerializeField]private TextAsset _archivoJson;
     
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class RequestManager : MonoBehaviour
             //print(generalInfo);
             _requestRecibidaSinArgumentos?.Invoke();
             _requestConArgumentos?.Invoke(generalInfo);
-            print("Despues del invoke");
+            
         }
 
         yield return new WaitForSeconds(_esperaEntreRequests);

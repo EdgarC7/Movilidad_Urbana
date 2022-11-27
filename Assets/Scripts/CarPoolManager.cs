@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CarPoolManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _objetoOriginal;
+    
+    [SerializeField]
+    private int _tamanioDePool;
+    
+    private Queue<GameObject> _pool;
 
-    // LO PRIMERO
-    // lo vamos a hacer un pseudo singleton 
-    // voy a usar una propiedad
-    // mecanismo que divide el acceso de lectura / escritura a una variable
-    // la variable puede ser anónima (como aquí)
+   
     public static CarPoolManager Instance {
         get;
         private set;
@@ -27,13 +30,7 @@ public class CarPoolManager : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private GameObject _objetoOriginal;
-    
-    [SerializeField]
-    private int _tamanioDePool;
-    
-    private Queue<GameObject> _pool;
+   
 
     // sucede una vez al inicio, siempre corre no importa 
     // si el objeto está deshabilitado
@@ -69,7 +66,7 @@ public class CarPoolManager : MonoBehaviour
         print(posicion);
         // revisar si queue tiene objetos disponibles
         if(_pool == null || _pool.Count == 0){
-            Debug.LogError("SE ACABO EL POOL, YA TRANQUILIZATE");
+           
             return null;
         }
 

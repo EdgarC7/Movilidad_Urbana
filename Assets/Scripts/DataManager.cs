@@ -36,48 +36,18 @@ public class DataManager : MonoBehaviour
     private void PosicionarCarros()
     {
       
-        print(_carrosGO.Length + "carritos");
+        
         for (int i = 0; i < _carros.Length; i++)
         {
            
             _carrosGO[i].transform.position = new Vector3(
                 _carros[i].x, 1, _carros[i].z);
             
-            /*
-            if (_carros[i].dir == 180) {
-                if (_carrosGO[i].transform.rotation.y>=179) {
-                    continue;
-                }
-                else {
-                    _carrosGO[i].transform.Rotate(0,180f,0, Space.Self);
-                } 
-            }
-            */
+          
         }
     }
 
-    // private void PosicionarSemaforos()
-    // {
-    //
-    //     for (int i = 0; i < _frames.Length; i++)
-    //     {
-    //         _semaforosGO[semaforoCounter].transform.position = new Vector3(
-    //             _frames[i].semaphores[semaforoCounter].x,
-    //             1,
-    //             _frames[i].semaphores[semaforoCounter].y
-    //
-    //         );
-    //         if (semaforoCounter >= _frames[i].semaphores.Length - 1)
-    //         {
-    //             semaforoCounter = 0;
-    //         }
-    //         else
-    //         {
-    //             semaforoCounter++;
-    //         }
-    //
-    //     }
-    // }
+  
 
     IEnumerator CambiarPosicion(GeneralInfo datos)
     {
@@ -110,10 +80,9 @@ public class DataManager : MonoBehaviour
         _carros = datos.cars;
         _semaforos = datos.semaphores;
         _frames = datos.frames;
-        // invocar PosicionarCarros()
+       
         Inicio();
         StartCoroutine(CambiarPosicion(datos));
-        // CambiarPosicion(datos);
-        // PosicionarSemaforos();
+     
     }
 }
