@@ -55,6 +55,10 @@ public class DataManager : MonoBehaviour
             //_carrosGO[i].transform.position.y = 0.6;
             if (_carros[i].dir == 180) {
                 _carrosGO[i].transform.Rotate(0,180f,0, Space.Self);
+            }else if (_carros[i].dir == 90) {
+                _carrosGO[i].transform.Rotate(0,90f,0, Space.Self);
+            }else if (_carros[i].dir == -90) {
+                _carrosGO[i].transform.Rotate(0,-90f,0, Space.Self);
             }
         }
         
