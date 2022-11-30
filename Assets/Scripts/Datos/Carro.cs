@@ -8,4 +8,6 @@ public class Carro
     public float x;
     public float z;
     public float dir;
+    public int StateColor;
+    public int StateColor2;
 }
