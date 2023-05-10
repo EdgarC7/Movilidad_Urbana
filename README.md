@@ -9,5 +9,6 @@ con la problemática de la movilidad urbana presente en las ciudades.
 # Implementación:
 Este proyecto esta desarrollado usando unity y python utilizando la librería agentpy, unity siendo la parte de la simulación para la representación gráfica
 y python la lógica de los agentes (su comportamiento y desiciones a tomar).
+
 ![](unity-logo.png)
 ![](python.webp)
